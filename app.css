@@ -21,7 +21,7 @@ form {
 
 fieldset{
   border: 1px solid lightgrey;
-  padding: 10 5px 10px 5px;
+  text-align: center;
 }
 
 label {
@@ -31,5 +31,10 @@ label {
 }
 
 input {
-  width: 100%;
+ width: 80%;
+ 
+}
+
+button {
+  width: 15%;
 }
