@@ -11,13 +11,20 @@
 </head>
 
 <body>
+  <header role="banner">
+    <h1>Thinkful Tube</h1>
+  </header>
   <main role="main">
-    Hello
+    <form action="test.php" method="post">
+      <fieldset>
+        <label for="search">Search</label>
+        <input placeholder="eg. The Lion King" type="text" name="search" id="search">
+        <button type="submit">Go</button>
+      </fieldset>
+    </form>
   </main>
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
   <script src="app.js"></script>
 </body>
 
