@@ -1,16 +1,21 @@
 $(() => {
   let items = [];
+  let nextPage = '';
+  let query = '';
 
-  search = query => {
-    const params = {
+  search = showMore => {
+    let params = {
       part: 'snippet',
       key: 'AIzaSyBxNr2OGUF-GeC2byGuWkWU-RUvpmIxiZI',
-      q: query
+      q: query,
+      pageToken: nextPage
     };
+    console.log(params);
+
     $.getJSON('https://www.googleapis.com/youtube/v3/search', params)
     .done(data => {
       parseData(data);
-      renderItems();
+      renderItems(showMore);
     })
     .fail(()=> {
       console.log('fail')
@@ -19,6 +24,7 @@ $(() => {
   }
 
   parseData = data => {
+    nextPage = data.nextPageToken;
     items = [];
     data.items.forEach(item => {
       items.push({
@@ -31,10 +37,13 @@ $(() => {
     });
   }
 
-  renderItems = () => {
+  renderItems = (showMore) => {
     const results = $('.results-js');
-    $(results).empty();
 
+    if(!showMore) {
+      $(results).empty();
+    }
+    
     items.forEach(item => {
       const videoLink = `https://www.youtube.com/watch?v=${item.videoId}`;
       const channelLink = `https://www.youtube.com/channel/${item.channelId}`
@@ -62,7 +71,7 @@ $(() => {
     $('.videoModal-js').css('display', 'block');
   }
 
-  handleMainClick = () => {
+  handleMainClicked = () => {
     $('.videoModal-js').click(e => {
       $('iframe').prop('src', '');
       $('.videoModal-js').css('display', 'none');
@@ -72,10 +81,21 @@ $(() => {
   handleSubmit = () => {
     $('form').submit(e => {
       e.preventDefault();
-      let val = $('input').val();
-      search(val);
+      query = $('input').val();
+      nextPage = '';
+      setTimeout(()=> {
+        $('.more-js').css('display', 'block');
+      }, 500)
+      
+      search();
     });
   };
+
+  handleMoreClicked = () => {
+    $('.more-js').click(e => {
+      search(true);
+    })
+  }
 
   handleVideoClicked = () => {
     $('.results-js').on('click', 'img', e => {
@@ -86,5 +106,6 @@ $(() => {
 
   handleSubmit();
   handleVideoClicked();
-  handleMainClick();
+  handleMainClicked();
+  handleMoreClicked();
 })

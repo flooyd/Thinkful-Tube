@@ -41,7 +41,7 @@ input {
  
 }
 
-button {
+searchButton {
   width: 15%;
   float: right;
 }
@@ -91,4 +91,14 @@ img {
   margin: 60px auto;
   width: 100%;
   max-width: 900px;
+}
+
+.more {
+  display: none;
+  width: 150px;
+  font-size: 16px;
+  margin: 10px auto 150px auto;
+  color: white;
+  background-color: red;
+  border: 1px solid #444;
 }
