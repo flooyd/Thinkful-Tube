@@ -16,20 +16,20 @@
   <header role="banner">
     <h1>Thinkful Tube</h1>
   </header>
-  <main role="main">
-    <form action="test.php" method="post">
-      <fieldset>
-        <label for="search">Search</label>
-        <input required placeholder="eg. The Matrix" type="text" name="search" id="search">
-        <button class="searchButton" type="submit">Go</button>
-      </fieldset>
-    </form>
-
+  <form action="test.php" method="post">
+    <fieldset>
+      <label for="search">Search</label>
+      <input required placeholder="eg. The Matrix" type="text" name="search" id="search">
+      <button class="searchButton" type="submit">Go</button>
+    </fieldset>
+  </form>
+  <main aria-live="assertive" role="main" hidden="true">
     <ul class="results-js results">
     </ul>
 
     <button class="more more-js">Show More</button>
     <section role="region" class="videoModal videoModal-js">
+      <p role="alert">Press escape to exit.</p>
       <div class="video">
 
       </div>

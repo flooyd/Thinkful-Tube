@@ -69,18 +69,29 @@ $(() => {
       `
     );
     $('.videoModal-js').css('display', 'block');
+    $('p').text('Press Escape to exit.');
+
+    setTimeout(() => {
+      $('p').text(' ');
+    }, 1500);
+    
+  }
+
+  hideVideoModal = () => {
+    $('iframe').prop('src', '');
+    $('.videoModal-js').css('display', 'none');
   }
 
   handleMainClicked = () => {
     $('.videoModal-js').click(e => {
-      $('iframe').prop('src', '');
-      $('.videoModal-js').css('display', 'none');
+      hideVideoModal();
     });
   };
 
   handleSubmit = () => {
     $('form').submit(e => {
       e.preventDefault();
+      $('main').prop('hidden', false);
       query = $('input').val();
       nextPage = '';
       setTimeout(()=> {
@@ -103,6 +114,14 @@ $(() => {
       renderModal(videoId)
     });
   };
+
+  window.onkeyup = e => {
+    console.log(e.keyCode.toString());
+    if (e.keyCode === 27)
+    {
+      hideVideoModal();
+    }
+  }
 
   handleSubmit();
   handleVideoClicked();
